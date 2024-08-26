@@ -1,6 +1,7 @@
 import argparse
 import os
 import traceback
+import sys
 import warnings
 from typing import TYPE_CHECKING, List, Optional, Tuple, Union
 
@@ -150,6 +151,9 @@ def transcribe(
                     f"Detected language: {LANGUAGES[decode_options['language']].title()}"
                 )
 
+    if verbose:
+       sys.stdout.reconfigure(encoding='utf-8')
+       
     language: str = decode_options["language"]
     task: str = decode_options.get("task", "transcribe")
     tokenizer = get_tokenizer(
